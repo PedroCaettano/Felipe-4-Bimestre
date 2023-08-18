@@ -1,0 +1,38 @@
+class preto // classe que manipula: espadas e paus 
+{
+    public:
+    void set_Value(int naipe, int valores[]);
+    void print_Cards(); // Função para imprimir as cartas
+    private:
+    int naipe; //espadas e paus
+    int valor[25]; //1,2,3,4,5,6,7,8,9,10,q,j,k
+};
+
+class vermelho // classe que manipula: ouros e copas
+{
+    public:
+    private:
+    int naipe_Ver;//ouros e copas
+    int valor_Ver[25];//1,2,3,4,5,6,7,8,9,10,q,j,k
+
+};
+
+class slot_Temp //cria o slot onde ojogador pode armazenar as cartas temporariamente
+{
+    public:
+    private:
+};
+
+class slot_Def //cria o slot onde o jogador deverá colocar as cartas para organizar os naipes e ganhar o jogo
+{
+    public:
+    private:
+
+};
+
+class movimento //verifica jogadas válidas exibe mensegens de movimentos impossíveis ou vitoria
+{
+    public:
+    private:
+
+};

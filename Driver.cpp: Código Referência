@@ -1,0 +1,165 @@
+// Rascunho. Nada aqui deve ser considerado a sério
+
+#include "deck.h"
+
+int main() {
+    Deck myDeck;
+    myDeck.Shuffle();
+    Card FC1;
+    Card FC2;
+    Card FC3;
+    Card FC4;
+    Card F1[13];
+    Card F2[13];
+    Card F3[13];
+    Card F4[13];
+    Card PC1[25];
+    Card PC2[25];
+    Card PC3[25];
+    Card PC4[25];
+    Card PC5[25];
+    Card PC6[25];
+    Card PC7[25];
+    Card PC8[25];
+
+    int i = 0;
+    for (int j = 0; j < 7; j++) {
+        PC1[j] = myDeck.Draw(i);
+    }
+    for (int j = 0; j < 7; j++) {
+        PC2[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 7; j++) {
+        PC3[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 7; j++) {
+        PC4[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 6; j++) {
+        PC5[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 6; j++) {
+        PC6[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 6; j++) {
+        PC7[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 6; j++) {
+        PC8[j] = myDeck.Draw(i);
+        i++;
+    }
+    std::cout << "Freecell 1 is: " << std::endl;
+    printCard(FC1);
+    std::cout << "Freecell 2 is: " << std::endl;
+    printCard(FC2);
+    std::cout << "Freecell 3 is: " << std::endl;
+    printCard(FC3);
+    std::cout << "Freecell 4 is: " << std::endl;
+    printCard(FC4);
+
+    std::cout << "Foundation 1 is: " << std::endl;
+    printColumn(F1);
+    std::cout << "Foundation 2 is: " << std::endl;
+    printColumn(F2);
+    std::cout << "Foundation 3 is: " << std::endl;
+    printColumn(F3);
+    std::cout << "Foundation 4 is: " << std::endl;
+    printColumn(F4);
+
+    std::cout << "Play Column 1 is: " << std::endl;
+    printColumn(PC1);
+    std::cout << "Play Column 2 is: " << std::endl;
+    printColumn(PC2);
+    std::cout << "Play Column 3 is: " << std::endl;
+    printColumn(PC3);
+    std::cout << "Play Column 4 is: " << std::endl;
+    printColumn(PC4);
+    std::cout << "Play Column 5 is: " << std::endl;
+    printColumn(PC5);
+    std::cout << "Play Column 6 is: " << std::endl;
+    printColumn(PC6);
+    std::cout << "Play Column 7 is: " << std::endl;
+    printColumn(PC7);
+    std::cout << "Play Column 8 is: " << std::endl;
+    printColumn(PC8);
+
+    return 0;
+}
+
+void printCard(Card c) {
+    char rank;
+    char suit;
+    char color;
+
+    switch(c.getRank()) {
+        case 1: rank = 'A';
+                break;
+        case 2: rank = '2';
+                break;
+        case 3: rank = '3';
+                break;
+        case 4: rank = '4';
+                break;
+        case 5: rank = '5';
+                break;
+        case 6: rank = '6';
+                break;
+        case 7: rank = '7';
+                break;
+        case 8: rank = '8';
+                break;
+        case 9: rank = '9';
+                break;
+        case 10: rank = 'T';
+                 break;
+        case 11: rank = 'J';
+                 break;
+        case 12: rank = 'Q';
+                 break;
+        case 13: rank = 'K';
+                 break;
+        default: rank = '0';
+                 break;
+    }
+
+    switch(c.getSuit()) {
+        case 1: suit = 'S';
+                break;
+        case 2: suit = 'C';
+                break;
+        case 3: suit = 'H';
+                break;
+        case 4: suit = 'D';
+                break;
+        default: suit = '0';
+                 break;
+    }
+
+    switch(c.getColor()) {
+        case 1: color = 'B';
+                break;
+        case 2: color = 'R';
+                break;
+        default: color = '0';
+                 break;
+    }
+
+    std::cout << "Rank is: " << rank << ". Suit is: " << suit << ". Color is: " << color << std::endl;
+}
+
+void printColumn(Card ar[]) {
+    Card temp;
+    int i = 0;
+    temp = ar[i];
+    while(temp.getRank() != 0) {
+        printCard(temp);
+        i++;
+        temp = ar[i];
+    }
+}

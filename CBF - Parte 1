@@ -1,0 +1,36 @@
+// Anotação de um exemplo simples de pilhas:
+// Anotações feitas em base na video aula do CFB Cursos
+// Pilha/Stack - Parte 1
+
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+int main(){
+
+stack <string> cartas;
+
+cartas.push("Rei de Copas");
+cartas.push("Rei de Espadas");
+cartas.push("Rei de Ouros");
+cartas.push("Rei de Paus");
+
+cout << "Tamanho da pilha: " << cartas.size() <<"\n"; // Adiciona elementos a uma pilha
+
+cout << "Carta do topo: " << cartas.pop() << "\n"; // Retira elementos
+de uma pilha 
+
+// Observação: First In, Last Out. Os primeiros serão os últimos a sair
+
+
+//Quanto mais desses comandos são feitos, mais deles retiram as cartas que estão no topo
+cartas.pop(); // Retira o Elemento do topo. Sendo mais especifico o rei de paus
+
+cartas.pop(); // Retira o rei de ouros
+
+cout << "Nova carta do topo: " << cartas.top() << "\n"; // Informa as cartas que estão no topo
+
+return 0;
+ 
+}

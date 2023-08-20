@@ -1,0 +1,54 @@
+// Pilha/Stack - Parte 2 
+// Conhecendo o metódo Empty
+// Metódo Empty retorna verdadeiro ou falso. Se a pilha tá vazia é true
+// Se a pilha tem qualquer coisa dentro é false
+
+int main(){
+
+stack <string> cartas;
+
+if(cartas.empty()) //Forma de como escrever o Empty
+{
+if(cartas.emptt()){
+
+cout << "Pilha vazia\n\n";
+
+}else{
+
+cout<< "Pilja com cartas\n\n";
+
+}
+
+cartas.push("Rei de Copas");
+cartas.push("Rei de Espadas");
+cartas.push("Rei de Ouros");
+cartas.push("Rei de Paus");
+
+// Se você colocar o comando empty das cartas aqui em cima de cartas.push, o código vai informar que há sim algo na pilha
+
+//Podemos usar o Size para ver se a pilha está vazia ou não
+// Exemplo em código:
+// if (cartas.soze() == 0){
+// cout << "Pilha cp, cartas\n\n";
+// }else{
+// cout << "Pilha com cartas\n\n";
+//}
+
+
+cout << "Tamanho da pilha: " << cartas.size() <<"\n"; 
+
+//exemplo em código de como zerar todos os elementos de uma pilha:
+while(!cartas.empty()){
+cartas.pop();
+}
+
+// metódos que podemos usar para as pilhas e seus significados:
+push(); // adicionar elementos a pilha
+pop(); //  retira o elemento do topo
+top(); // fala qual elemento está no topo
+size(); // retorna o tamanho da pilha
+empty(); // retorna verdadeiro ou falso caso a pilha esteja vazia ou não
+
+return 0;
+ 
+}

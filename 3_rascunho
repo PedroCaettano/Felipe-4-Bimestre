@@ -1,0 +1,248 @@
+// Terceira tentativa de produzir o trabalho.
+// Neste arquivo/reservatório estará incluso as versões rascunho de arquivo.h, arquivo.cpp e driver.cpp
+
+//arquivo.h
+#ifndef STACK_H
+#define STACK_H
+
+
+struct Card {
+    std::string suit;
+    std::string rank;
+};
+
+class CardDealer {
+class FreeCellGame {
+public:
+    FreeCellGame();
+    void ShuffleDeck();
+    void DistributeCards();
+    void DisplayPiles();
+
+private:
+    static const int numCards = 52;
+    static const int numPiles = 8;
+    Card deck[numCards];
+    Card piles[numPiles][7];
+
+    void InitializeDeck();
+    void ShuffleDeckFisherYates();
+};
+
+
+    
+
+//arquivo.cpp
+
+#include "Stack.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Card {
+    std::string suit;
+    std::string rank;
+};
+
+class FreeCellGame {
+public:
+    FreeCellGame();
+    void ShuffleDeck();
+    void DistributeCards();
+    void DisplayPiles();
+
+private:
+    static const int numCards = 52;
+    static const int numPiles = 8;
+    Card deck[numCards];
+    Card piles[numPiles][7];
+    char face;
+    char symbol;
+    int card_Maker();
+    int card_Shufller();
+
+
+    void InitializeDeck();
+    void ShuffleDeckFisherYates();
+};
+
+#endif
+
+// arquivo.cpp:
+
+#include "arquivo.h"
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+FreeCellGame::FreeCellGame() {
+    InitializeDeck();
+}
+
+void FreeCellGame::InitializeDeck() {
+    std::string suits[] = {"Espadas", "Paus", "Ouro", "Copas"};
+    std::string ranks[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+
+    int cardIndex = 0;
+    for (int suitIndex = 0; suitIndex < 4; suitIndex++) {
+        for (int rankIndex = 0; rankIndex < 13; rankIndex++) {
+            deck[cardIndex].suit = suits[suitIndex];
+            deck[cardIndex].rank = ranks[rankIndex];
+            cardIndex++;
+        }
+    }
+}
+
+void FreeCellGame::ShuffleDeckFisherYates() {
+    srand(static_cast<unsigned>(time(nullptr)));
+    for (int i = numCards - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        std::swap(deck[i], deck[j]);
+    }
+}
+
+void FreeCellGame::ShuffleDeck() {
+    ShuffleDeckFisherYates();
+}
+
+void FreeCellGame::DistributeCards() {
+    int cardIndex = 0;
+    for (int i = 0; i < numPiles; ++i) {
+        for (int j = 0; j < 7; ++j) {
+            piles[i][j] = deck[cardIndex];
+            cardIndex++;
+        }
+    }
+}
+
+void FreeCellGame::DisplayPiles() {
+    for (int i = 0; i < numPiles; ++i) {
+        std::cout << "Pilha " << i << ": ";
+        for (int j = 0; j < 7; ++j) {
+            std::cout << piles[i][j].rank << piles[i][j].suit << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+
+
+
+
+
+// driver.cpp
+
+#include "esfera.h"
+#include <iostream>
+
+using namespace std;
+
+int main(){
+Deck myDeck;
+    myDeck.Shuffle();
+    Card FC1;
+    Card FC2;
+    Card FC3;
+    Card FC4;
+    Card F1[13];
+    Card F2[13];
+    Card F3[13];
+    Card F4[13];
+    Card PC1[25];
+    Card PC2[25];
+    Card PC3[25];
+    Card PC4[25];
+    Card PC5[25];
+    Card PC6[25];
+    Card PC7[25];
+    Card PC8[25];
+
+    int i = 0;
+    for (int j = 0; j < 7; j++) {
+        PC1[j] = myDeck.Draw(i);
+    }
+    for (int j = 0; j < 7; j++) {
+        PC2[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 7; j++) {
+        PC3[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 7; j++) {
+        PC4[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 6; j++) {
+        PC5[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 6; j++) {
+        PC6[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 6; j++) {
+        PC7[j] = myDeck.Draw(i);
+        i++;
+    }
+    for (int j = 0; j < 6; j++) {
+        PC8[j] = myDeck.Draw(i);
+        i++;
+    }
+    
+// Embaralhe o baralho aleatoriamente
+    srand(static_cast<unsigned>(time(nullptr)));
+    for (int i = numCards - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        swap(deck[i], deck[j]);
+
+    // Distribua as cartas como desejado
+    int numPiles = 8;
+    Card piles[numPiles][7];  // Cada pilha pode conter até 7 cartas
+
+    cardIndex = 0;
+    for (int i = 0; i < numPiles; ++i) {
+        for (int j = 0; j < 7; ++j) {
+            piles[i][j] = deck[cardIndex];
+            cardIndex++;
+
+    
+    std::cout << "Freecell 1 is: " << std::endl;
+    printCard(FC1);
+    std::cout << "Freecell 2 is: " << std::endl;
+    printCard(FC2);
+    std::cout << "Freecell 3 is: " << std::endl;
+    printCard(FC3);
+    std::cout << "Freecell 4 is: " << std::endl;
+    printCard(FC4);
+
+    std::cout << "Foundation 1 is: " << std::endl;
+    printColumn(F1);
+    std::cout << "Foundation 2 is: " << std::endl;
+    printColumn(F2);
+    std::cout << "Foundation 3 is: " << std::endl;
+    printColumn(F3);
+    std::cout << "Foundation 4 is: " << std::endl;
+    printColumn(F4);
+
+    std::cout << "Play Column 1 is: " << std::endl;
+    printColumn(PC1);
+    std::cout << "Play Column 2 is: " << std::endl;
+    printColumn(PC2);
+    std::cout << "Play Column 3 is: " << std::endl;
+    printColumn(PC3);
+    std::cout << "Play Column 4 is: " << std::endl;
+    printColumn(PC4);
+    std::cout << "Play Column 5 is: " << std::endl;
+    printColumn(PC5);
+    std::cout << "Play Column 6 is: " << std::endl;
+    printColumn(PC6);
+    std::cout << "Play Column 7 is: " << std::endl;
+    printColumn(PC7);
+    std::cout << "Play Column 8 is: " << std::endl;
+    printColumn(PC8);
+
+
+
+    }
+    }

@@ -8,4 +8,4 @@ dos tempos de faculdade.
 
 Nós nos esforçamos muito para tornar isso aqui real.
 
-Feito por Vinícius Vicari e Pedro Caetano
+Feito por Vinícius Vicari, Pedro Caetano e Vitor Matheus

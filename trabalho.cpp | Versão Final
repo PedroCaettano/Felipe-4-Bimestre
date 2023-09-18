@@ -1,0 +1,164 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <stack>
+#include "trabalho.h"
+
+int count = 0;
+const int deckSize = 52;
+const int freeCellsSize = 4;
+
+//================================================================[[[[PILHAS DE JOGO]]]]================================================================
+
+Pile::Pile()
+{
+    top = 0;
+}
+
+Pile::~Pile()
+{
+    std::cout << "Pilha destruida \n";
+}
+
+bool Pile::Empty()
+{
+    return (top == 0);
+}
+
+bool Pile::Full()
+{
+    return (top == maxGamePile);
+}
+
+card Pile::Top(card& PileEntry)
+{
+    if(top == 0)
+    {
+        std::cout << "    ";
+    }
+    PileEntry = Entry[top];
+    return PileEntry;
+}
+
+void Pile::Push(card& c)
+{
+    if(Full())
+    {
+        std::cout << "Pilha Cheia \n";
+    }
+
+    top++;
+    Entry[top] = c;
+}
+
+void Pile::pop(card& c)
+{
+    if(Empty())
+    {
+        std::cout << "Pilha ja esta vazia \n";
+    }
+
+    c = Entry[top];
+    top = top - 1;
+
+}
+
+int Pile::Size()
+{
+    return top;
+}
+
+//================================================================[[[[CÓDIGO DO JOGO]]]]=============================================================
+void Regras_Frecell()
+{
+    std::cout << "como jogar: " << std::endl
+    << "O objetivo do jogo empilhar todas as cartas de cada um dos naipe do as ate o rei em suas respectivas pilhas de saida. " << std::endl
+    << "E possivel movimentar cartas entre as pilhas de jogo, contanto que obedeca a seguinte regra:" << "\n"
+    << "nas pilhas de jogo todas as cartas devem ser empilhadas em ordem decrescente(do rei ate o as) sempre alternando a cor do naipe, ou seja se voce tiver uma carta preta a de baixo obrigatoriamente sera  vermelha" << "\n"
+    << "Voce pode mover qualquer carta para uma free cell vazia, deste modo e possivel acessar a carta de tras da mesma." << std::endl
+    << "Uma vez movida para uma das freecells a carta so pode retorna a pilha de jogo sob as condicoes de movimento das pilhas de jogo" << "\n"
+    << "As jogadas consistem em indicar qual sera a pilha do seu movimento(ultima carta da pilha) e o endereco para qual a carta sera movida." <<std::endl
+    << "(Digite 99 para encerrar o jogo)\n\n";
+    
+    std::cout << "\n\n";
+
+}
+
+void card::cardMaker(card deck[])
+{
+    int l = 0;
+    char num[] = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+    char suit[] = {'C', 'D', 'H', 'S'}; // ♣ ♦ ♥ ♠
+    for(int i = 0; i < 4; i++)
+    {
+        for(int j = 0; j < 13; j++)
+        {
+            deck[l].face = suit[i];
+            deck[l].symbol = num[j];
+            deck[l].index = l;
+            deck[l].isEmpty = false;
+            l++;
+        }
+    }
+}
+
+void card::cardShuffler(card deck[])
+{
+    const int size = 52;
+    int n, m;
+    card temp;
+    for (n = 0; n < size; n++)
+    {
+        m = rand() % size;
+        temp = deck[n];
+        deck[n] = deck[m];
+        deck[m] = temp;
+    }
+
+}
+
+void card::freeCellsMaker(card deck[], card freeCells[])
+{
+    std:: cout << "free cells: \n";
+    for(int i = 0; i < freeCellsSize; i++)
+    {
+        if(deck[i].isEmpty == false)
+        {
+        std::cout << "[  ]" << " ";
+        } 
+    }
+}
+
+//função main
+int main() 
+{
+    unsigned seed = time(0);
+    srand(seed);
+    card deck[deckSize];
+    card freeCells[freeCellsSize];
+    Pile pilha1[8];
+    card::cardMaker(deck);
+    card::cardShuffler(deck);
+    int play, adress;
+    Pile currentPile, adressPile;
+    pilha1[1].printPile();
+    do
+    {
+        Regras_Frecell();
+        card::freeCellsMaker(deck,freeCells);
+        std::cout << "\n\nJogada: \n\n";
+        std::cin >> play;
+        if(play == 99)
+        {
+            system("cls");
+            std::cout << "Jogo terminado!";
+            abort();
+        }
+        std::cin >> adress;
+    }
+    while(play != 99);
+
+    system("pause");
+    return 0;
+    
+}

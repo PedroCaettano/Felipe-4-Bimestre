@@ -1,0 +1,60 @@
+#ifndef TRABALHO_H
+#define TRABALHO_H
+#include <iostream>
+#include <string>
+#include <stack>
+#include <cstdlib>
+#include <ctime>
+
+const int maxGamePile = 20;
+
+class Pile; //declaração avançada da classe Pile para que o método dealForDeck possa utilizar a classe
+
+class card
+{
+    public:
+
+    static void cardMaker(card c[]);
+    static void cardShuffler(card c[]);
+    static void dealForDeck(Pile pile1, Pile pile2, Pile pile3, Pile pile4, Pile pile5, Pile pile6, Pile pile7, Pile pile8);
+    static void freeCellsMaker(card c[], card f[]);
+    char getFace()
+    {
+        return face;
+    }
+
+    char getSymbol()
+    {
+        return symbol;
+    }
+
+    private:
+    char face; //A,2,3,4,5,6,7,8,9,T,J,Q,K
+    char symbol; // C H S D  ♣ ♥ ♠ ♦
+    int adress;
+    int index;
+    bool isEmpty; // quando a carta for movimentada precisara assumir o valor verdadeiro
+};
+
+class Pile 
+{
+    public: 
+    Pile();
+    ~Pile();
+    bool Empty();
+    bool Full();
+    void Push(card& c);
+    void pop(card& c);
+    void Clear();
+    int Size();
+    card Top(card& PileEntry);
+    void printPile();
+    
+    private:
+    int top;
+    card Entry[maxGamePile];
+};
+
+
+
+#endif
